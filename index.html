@@ -1,0 +1,139 @@
+<!-- index.html -->
+
+<html>
+  <head>
+    <title>Song Search</title>
+    <style>
+      body {
+        background-color: #1a1a1a;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      label {
+        margin: 10px 0;
+      }
+      input, select, button {
+        padding: 10px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333333;
+        color: #ffffff;
+      }
+      button {
+        cursor: pointer;
+        background-color: #555555;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+        color: #ffffff;
+      }
+      th, td {
+        border: 1px solid #333333;
+        text-align: left;
+        padding: 10px;
+      }
+      th {
+        background-color: #555555;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Song Search Results</h1>
+
+    <!-- Display search results as a table -->
+    <table id="searchResults">
+      <thead>
+        <tr>
+          <th>Song ID</th>
+          <th>Song Name</th>
+          <th>Artist</th>
+          <th>Album</th>
+          <th>Genre</th>
+          <th>Mood</th>
+          <th>Year of Release</th>
+          <th>Playtime</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Search results will be dynamically added here using JavaScript -->
+      </tbody>
+    </table>
+
+    <form action="/search" method="get">
+      <label for="songSearchTerm">Search for a song:</label>
+      <input type="text" id="songSearchTerm" name="song">
+      
+      <label for="artistSearchTerm">Search for an artist:</label>
+      <input type="text" id="artistSearchTerm" name="artist">
+      
+      <label for="albumSearchTerm">Search for an album:</label>
+      <input type="text" id="albumSearchTerm" name="album">
+      
+      <label for="genreSearchTerm">Search for a genre:</label>
+      <input type="text" id="genreSearchTerm" name="genre">
+      
+      <label for="moodSearchTerm">Search for a mood:</label>
+      <input type="text" id="moodSearchTerm" name="mood">
+      
+      <!-- Replace the text input with a dropdown for Year of Release -->
+      <label for="yearOfRelease">Year of Release:</label>
+      <select id="yearOfRelease" name="year">
+        <option value="">Select Year</option>
+        <!-- You can dynamically populate this list using JavaScript -->
+      </select>
+
+      <button type="submit">Search</button>
+    </form>
+
+    <script>
+      // JavaScript code to dynamically populate search results
+      const searchResultsTable = document.getElementById('searchResults');
+      const results = []; // Results will be fetched dynamically from the server
+
+      // Function to fetch and populate results
+      const fetchAndPopulateResults = async () => {
+        const response = await fetch('/search'); // Assuming the search endpoint is accessible
+        const data = await response.json();
+        
+        // Clear existing rows
+        while (searchResultsTable.rows.length > 1) {
+          searchResultsTable.deleteRow(1);
+        }
+
+        // Populate table with search results
+        data.forEach(song => {
+          const row = searchResultsTable.insertRow(-1);
+          const columns = [
+            'SongID', 'SongName', 'Artist', 'Album', 'Genre', 'Mood',
+            'YearOfRelease', 'Playtime', 'SongLink'
+          ];
+
+          columns.forEach(columnName => {
+            const cell = row.insertCell(-1);
+            cell.textContent = song[columnName];
+          });
+        });
+      };
+
+      // Call the function on page load
+      fetchAndPopulateResults();
+    </script>
+  </body>
+</html>

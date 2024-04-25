@@ -1,0 +1,58 @@
+/* styles.css */
+body {
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* Light text color */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #1a1a1a; /* Darker container background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Slight white shadow */
+  }
+  
+  h1 {
+    color: #ffcc00; /* Yellow color for the heading */
+  }
+  
+  form {
+    margin-top: 20px;
+    display: grid;
+    gap: 10px;
+  }
+  
+  label {
+    color: #ffcc00; /* Yellow color for labels */
+  }
+  
+  input, select, button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333333; /* Dark input background */
+    color: #ffffff; /* Light text color for input */
+  }
+  
+  button {
+    background-color: #ffcc00; /* Yellow background color for the button */
+    color: #1a1a1a; /* Dark text color for the button */
+    cursor: pointer;
+  }
+  
+  #results {
+    margin-top: 20px;
+  }
+  
+  p {
+    margin: 10px 0;
+    background-color: #555555; /* Dark background for result items */
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
